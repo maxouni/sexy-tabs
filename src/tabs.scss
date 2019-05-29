@@ -1,0 +1,125 @@
+$md: 992px;
+$input-focus-color: #0C0C0C;
+$bg-selected-color: #FFEBA0;
+$bg-disabled-color: #E5E5E5;
+$gray-500: #E5E5E5;
+
+.tabs {
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-flow: row wrap;
+
+  &__tab-list {
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  &__tab {
+    position: relative;
+    font-size: 1rem;
+    display: inline-block;
+    min-width: 108px;
+    height: 38px;
+    list-style: none;
+    padding: 9px 12px;
+    cursor: pointer;
+    text-align: center;
+    color: #404040;
+    transition: bgColor .4s ease;
+    outline: none;
+    z-index: 1;
+    margin-top: 0;
+    box-sizing: border-box;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border: 1px solid $gray-500;
+      width: auto;
+      margin: 0;
+    }
+
+    @media (max-width: $md) {
+      width: 100%;
+    }
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i + 1}) {
+        left: -$i + px;
+
+        // Убираем сдвиг слева и добавляем сверху
+        @media (max-width: $md) {
+          left: auto;
+          top: -$i + px
+        }
+      }
+    }
+
+    &:first-child {
+      &:before {
+        border-radius: 3px 0 0 3px;
+
+        // Переназначаем на верхние радиусы
+        @media (max-width: $md) {
+          border-radius: 3px 3px 0 0;
+        }
+      }
+    }
+
+    &:last-child {
+      &:before {
+        border-radius: 0 3px 3px 0;
+
+        // Переназначаем на нижние радиусы
+        @media (max-width: $md) {
+          border-radius: 0 0 3px 3px;
+        }
+      }
+    }
+
+    &:hover {
+      color: $input-focus-color;
+      z-index: 3;
+
+      &:before {
+        border-color: $input-focus-color;
+      }
+    }
+
+    &--selected,
+    &--selected:hover {
+      background: $bg-selected-color;
+      cursor: default;
+      z-index: 2;
+
+      &:before {
+        border-color: #B6A37E !important;
+      }
+
+    }
+
+    &--disabled {
+      color: GrayText;
+      background: $bg-disabled-color;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &__tab-panel {
+    width: 100%;
+    display: none;
+
+    &--selected {
+      display: block;
+    }
+  }
+}

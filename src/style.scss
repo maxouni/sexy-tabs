@@ -1,0 +1,16 @@
+@import "~normalize.css";
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+@import 'tabs';
