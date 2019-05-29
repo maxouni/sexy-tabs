@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
     entry: './src/style.scss',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'docs'),
         filename: 'bundle.js'
     },
     plugins: [new HtmlWebpackPlugin({
